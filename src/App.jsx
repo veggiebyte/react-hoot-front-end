@@ -18,11 +18,20 @@ const App = () => {
 
   const [hoots, setHoots] = useState([]);
 
- const handleAddHoot = async (hootFormData) => {
+  const handleAddHoot = async (hootFormData) => {
     const newHoot = await hootService.create(hootFormData);
     setHoots([newHoot, ...hoots]);
     navigate('/hoots');
   };
+
+  const handleDeleteHoot = async (hootId) => {
+    const deletedHoot = await hootService.deleteHoot(hootId);
+    // Filter state using deletedHoot._id:
+    setHoots(hoots.filter((hoot) => hoot._id !== deletedHoot._id));
+    navigate('/hoots');
+  };
+
+
 
   useEffect(() => {
     const fetchAllHoots = async () => {
@@ -42,14 +51,14 @@ const App = () => {
           <>
             {/* Protected routes (available only to signed-in users) */}
             {/* IMPORTANT: /hoots/new must come BEFORE /hoots/:hootId */}
-            <Route 
+            <Route
               path='/hoots/new'
               element={<HootForm handleAddHoot={handleAddHoot} />}
             />
             <Route path='/hoots' element={<HootList hoots={hoots} />} />
             <Route
               path='/hoots/:hootId'
-              element={<HootDetails />}
+              element={<HootDetails handleDeleteHoot={handleDeleteHoot} />}
             />
           </>
         ) : (
