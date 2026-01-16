@@ -12,7 +12,9 @@ const NavBar = () => {
         <ul>
           <li><Link to='/'>HOME</Link></li>
           <li><Link to='/hoots'>HOOTS</Link></li>
-          <li><Link to='/' onClick={handleSignOut}>SIGN OUT</Link></li>
+          {/* Add the NEW HOOT link */}
+          <li><Link to='/hoots/new'>NEW HOOT</Link></li>
+          <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
         </ul>
       ) : (
         <ul>

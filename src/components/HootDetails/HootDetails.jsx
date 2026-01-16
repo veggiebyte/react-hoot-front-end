@@ -2,7 +2,10 @@
 
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import * as hootService from '../../services/hootService';
+import * as hootService from '../../services/hootService';// src/components/HootDetails/HootDetails.jsx
+
+import CommentForm from '../CommentForm/CommentForm';
+
 
 
 
